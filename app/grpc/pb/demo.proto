@@ -1,0 +1,14 @@
+syntax = "proto3";
+option go_package = "/demo";
+package Demo;
+
+service Demo {
+  rpc Foo(DemoReq) returns(DemoRes);
+}
+
+message DemoReq {
+  string name = 1;
+}
+message DemoRes {
+  string name = 1;
+}
