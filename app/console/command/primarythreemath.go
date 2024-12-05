@@ -31,11 +31,11 @@ func mentalMath() {
 	fmt.Println("口算题")
 	num := 30
 	//20以内加减乘法
-	rs := math.GenerateProblems(10, 0, 20, 2, false, []string{"+", "-", "*"})
-	rs = append(rs, math.GenerateProblems(10, 0, 50, 3, false, []string{"+", "-", "*"})...)
-	rs = append(rs, math.GenerateProblems(10, 0, 50, 2, false, []string{"+", "-", "*"})...)
-	rs = append(rs, math.GenerateProblems(20, 0, 100, 2, false, []string{"+", "-", "*"})...)
-	rs = append(rs, math.GenerateProblems(10, 1000, 10000, 2, false, []string{"+", "-", "*"})...)
+	rs := math.GenerateProblems(&math.ProblemParam{N: 30, Min: 0, Max: 81, Nums: []math.Num{{Min: 0, Max: 9}, {Min: 0, Max: 9}}, Parenthesis: false, Ops: []string{"+", "-", "*"}})
+	//100以后加减法
+	rs = append(rs, math.GenerateProblems(&math.ProblemParam{N: 30, Min: 0, Max: 100, Nums: []math.Num{{Min: 0, Max: 100}, {Min: 0, Max: 100}}, Parenthesis: false, Ops: []string{"+", "-"}})...)
+	//1000以内2位数乘1位数
+	rs = append(rs, math.GenerateProblems(&math.ProblemParam{N: 30, Min: 0, Max: 1000, Nums: []math.Num{{Min: 1, Max: 100}, {Min: 0, Max: 10}}, Parenthesis: false, Ops: []string{"*"}})...)
 
 	rand.Shuffle(len(rs), func(i, j int) {
 		rs[i], rs[j] = rs[j], rs[i]
@@ -55,10 +55,14 @@ func mentalMath() {
 func detachedCalculation() {
 	fmt.Println("脱式计算")
 	num := 10
-	//20以内加减乘法
-	rs := math.GenerateProblems(10, 0, 20, 3, false, []string{"+", "-", "*"})
-	rs = append(rs, math.GenerateProblems(30, 0, 50, 3, false, []string{"+", "-"})...)
-	rs = append(rs, math.GenerateProblems(10, 0, 100, 3, false, []string{"+", "-"})...)
+	//100以内三数加减法
+	rs := math.GenerateProblems(&math.ProblemParam{N: 10, Min: 0, Max: 81, Nums: []math.Num{{Min: 0, Max: 100}, {Min: 0, Max: 100}, {Min: 0, Max: 100}}, Parenthesis: false, Ops: []string{"+", "-"}})
+	//100以内三数加减乘法
+	rs = append(rs, math.GenerateProblems(&math.ProblemParam{N: 30, Min: 0, Max: 200, Nums: []math.Num{{Min: 10, Max: 100}, {Min: 0, Max: 100}, {Min: 0, Max: 10}}, Parenthesis: false, Ops: []string{"+", "-"}})...)
+	//10000以内三数加减乘法
+	rs = append(rs, math.GenerateProblems(&math.ProblemParam{N: 30, Min: 0, Max: 1000, Nums: []math.Num{{Min: 10, Max: 100}, {Min: 100, Max: 1000}, {Min: 0, Max: 100}}, Parenthesis: false, Ops: []string{"+", "-"}})...)
+	//万以内3位数乘1位数
+	rs = append(rs, math.GenerateProblems(&math.ProblemParam{N: 30, Min: 0, Max: 10000, Nums: []math.Num{{Min: 100, Max: 999}, {Min: 0, Max: 10}}, Parenthesis: false, Ops: []string{"*"}})...)
 
 	rand.Shuffle(len(rs), func(i, j int) {
 		rs[i], rs[j] = rs[j], rs[i]
@@ -80,9 +84,13 @@ func detachedCalculation() {
 func columnarCalculation() {
 	fmt.Println("竖式计算")
 	num := 10
-	//20以内加减乘法
-	rs := math.GenerateProblems(10, 0, 100, 2, false, []string{"+", "-", "*"})
-	rs = append(rs, math.GenerateProblems(20, 100, 1000, 2, false, []string{"+", "-", "*"})...)
+
+	//100以内三数加减法
+	rs := math.GenerateProblems(&math.ProblemParam{N: 10, Min: 0, Max: 100, Nums: []math.Num{{Min: 0, Max: 100}, {Min: 0, Max: 100}, {Min: 0, Max: 100}}, Parenthesis: false, Ops: []string{"+", "-", "*"}})
+	//1000以内三数加减乘法
+	rs = append(rs, math.GenerateProblems(&math.ProblemParam{N: 30, Min: 0, Max: 1000, Nums: []math.Num{{Min: 10, Max: 100}, {Min: 0, Max: 100}, {Min: 0, Max: 10}}, Parenthesis: false, Ops: []string{"+", "-", "*"}})...)
+	//10000以内三数加减乘法
+	rs = append(rs, math.GenerateProblems(&math.ProblemParam{N: 30, Min: 0, Max: 10000, Nums: []math.Num{{Min: 10, Max: 100}, {Min: 100, Max: 1000}, {Min: 0, Max: 100}}, Parenthesis: false, Ops: []string{"+", "-"}})...)
 
 	rand.Shuffle(len(rs), func(i, j int) {
 		rs[i], rs[j] = rs[j], rs[i]
